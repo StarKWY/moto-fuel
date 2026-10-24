@@ -1,3 +1,5 @@
 # 150AURA 油耗记录
 
 春风 CFMOTO 150AURA 的加油与实测油耗看板，由本地脚本生成后发布。
+
+在线查看：**https://starkwy.github.io/moto-fuel/**
