@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>油耗记录 · 春风 CFMOTO 150AURA</title>
+<style>
+:root{
+  --bg:#f5f4f1; --card:#ffffff; --fg:#1b1b1d; --sub:#6f6d72; --line:#e7e3db;
+  --accent:#e0562b; --accent-soft:rgba(224,86,43,.10);
+  --teal:#2f7f6f; --teal-soft:rgba(47,127,111,.12);
+  --grid:#ece8e1; --shadow:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#131315; --card:#1c1c1f; --fg:#f1f0ee; --sub:#9a989e; --line:#2c2c30;
+    --accent:#ff7043; --accent-soft:rgba(255,112,67,.14);
+    --teal:#4fc3a1; --teal-soft:rgba(79,195,161,.14);
+    --grid:#28282c; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px 72px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+h1{font-size:22px;margin:0 0 4px;letter-spacing:-.2px;font-weight:650}
+.sub{font-size:13px;color:var(--sub);margin:0}
+.badge{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--teal-soft);color:var(--teal);
+  font-weight:600;white-space:nowrap;border:1px solid transparent}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+@media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.kpi .k{font-size:12px;color:var(--sub);margin-bottom:6px;letter-spacing:.2px}
+.kpi .v{font-size:24px;font-weight:660;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:12px;font-weight:500;color:var(--sub);margin-left:3px;letter-spacing:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;
+  margin-bottom:20px;box-shadow:var(--shadow)}
+.card h2{font-size:14px;margin:0 0 2px;font-weight:640;letter-spacing:.1px}
+.card .hint{font-size:12px;color:var(--sub);margin:0 0 14px}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.legend{display:flex;gap:18px;font-size:12px;color:var(--sub);margin:0 0 10px 4px}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.legend i.solid{background:var(--accent)}
+.legend i.dash{background:repeating-linear-gradient(90deg,var(--sub) 0 5px,transparent 5px 9px)}
+.empty{padding:26px 12px;text-align:center;color:var(--sub);font-size:13px;
+  background:var(--grid);border-radius:10px;border:1px dashed var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th{text-align:right;font-weight:600;color:var(--sub);font-size:12px;padding:0 10px 9px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;padding-left:2px}
+td{text-align:right;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td .tm{font-size:11px;color:var(--sub)}
+th small{display:block;font-size:10px;font-weight:500;color:var(--sub);opacity:.75;letter-spacing:0}
+.notes{list-style:none;margin:14px 0 0;padding:12px 0 0;border-top:1px dashed var(--line);
+  font-size:12px;line-height:1.85;color:var(--fg)}
+.notes li{padding-left:2px}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--accent-soft)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:6px;background:var(--teal-soft);color:var(--teal);font-weight:600}
+.tag.warn{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12px;color:var(--sub);margin-top:10px;line-height:1.7}
+.note b{color:var(--fg);font-weight:600}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+footer{font-size:12px;color:var(--sub);text-align:center;margin-top:26px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>春风 CFMOTO 150AURA</h1>
+      <p class="sub">油耗里程记录 · 油箱 8L · 共 2 次加油 · 最近加油 2026-10-24 13:03 · 累计优惠 ¥18.14</p>
+    </div>
+    <div class="badge">数据积累中</div>
+  </header>
+
+  <div class="kpis"><div class="kpi"><div class="k">总里程</div><div class="v">205<small>km</small></div></div><div class="kpi"><div class="k">累计加油</div><div class="v">9.07<small>L</small></div></div><div class="kpi"><div class="k">累计花费</div><div class="v">¥83.34<small></small></div></div><div class="kpi"><div class="k">平均油耗</div><div class="v">2.68<small>L/100km</small></div></div><div class="kpi"><div class="k">每公里油费</div><div class="v">¥0.246<small></small></div></div><div class="kpi"><div class="k">表显偏差</div><div class="v">低报 37%<small></small></div></div></div>
+
+  <div class="card">
+    <h2>实测油耗趋势</h2>
+    <p class="hint">满到满法实测：本次加油量 ÷ 两次加油间里程 × 100</p>
+    <div class="legend"><span><i class="solid"></i>实测</span><span><i class="dash"></i>车载表显</span></div><svg class="chart" viewBox="0 0 660 170" preserveAspectRatio="none" role="img"><line x1="44" y1="136.0" x2="644" y2="136.0" stroke="var(--grid)" stroke-width="1"/><text x="36" y="140.0" text-anchor="end" font-size="10" fill="var(--sub)">1.5</text><line x1="44" y1="97.3" x2="644" y2="97.3" stroke="var(--grid)" stroke-width="1"/><text x="36" y="101.3" text-anchor="end" font-size="10" fill="var(--sub)">2.0</text><line x1="44" y1="58.7" x2="644" y2="58.7" stroke="var(--grid)" stroke-width="1"/><text x="36" y="62.7" text-anchor="end" font-size="10" fill="var(--sub)">2.5</text><line x1="44" y1="20.0" x2="644" y2="20.0" stroke="var(--grid)" stroke-width="1"/><text x="36" y="24.0" text-anchor="end" font-size="10" fill="var(--sub)">3.0</text><polyline points="344.0,44.6" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="344.0" cy="44.6" r="3.6" fill="var(--card)" stroke="var(--accent)" stroke-width="2.2"/><polyline points="344.0,120.5" fill="none" stroke="var(--sub)" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" opacity="0.85"/><circle cx="344.0" cy="120.5" r="2.8" fill="var(--sub)" opacity="0.9"/><text x="342.0" y="33.6" text-anchor="end" font-size="11" font-weight="600" fill="var(--accent)">2.68</text><line x1="344.0" y1="44.6" x2="344.0" y2="120.5" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="3 3"/><text x="354.0" y="85.6" font-size="10" fill="var(--sub)">差 +0.98</text><text x="344.0" y="158" text-anchor="start" font-size="10" fill="var(--sub)">10-24</text></svg>
+  </div>
+
+  <div class="card">
+    <h2>油价走势</h2>
+    <p class="hint">按实付金额 ÷ 加油量折算，含优惠</p>
+    <svg class="chart" viewBox="0 0 660 150" preserveAspectRatio="none" role="img"><line x1="44" y1="116.0" x2="644" y2="116.0" stroke="var(--grid)" stroke-width="1"/><text x="36" y="120.0" text-anchor="end" font-size="10" fill="var(--sub)">8.75</text><line x1="44" y1="84.0" x2="644" y2="84.0" stroke="var(--grid)" stroke-width="1"/><text x="36" y="88.0" text-anchor="end" font-size="10" fill="var(--sub)">9.00</text><line x1="44" y1="52.0" x2="644" y2="52.0" stroke="var(--grid)" stroke-width="1"/><text x="36" y="56.0" text-anchor="end" font-size="10" fill="var(--sub)">9.25</text><line x1="44" y1="20.0" x2="644" y2="20.0" stroke="var(--grid)" stroke-width="1"/><text x="36" y="24.0" text-anchor="end" font-size="10" fill="var(--sub)">9.50</text><polygon points="44.0,116.0 44.0,60.0 644.0,59.8 644.0,116.0" fill="var(--teal)" opacity="0.09"/><polyline points="44.0,60.0 644.0,59.8" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="44.0" cy="60.0" r="3.6" fill="var(--card)" stroke="var(--teal)" stroke-width="2.2"/><circle cx="644.0" cy="59.8" r="3.6" fill="var(--card)" stroke="var(--teal)" stroke-width="2.2"/><text x="642.0" y="48.8" text-anchor="end" font-size="11" font-weight="600" fill="var(--teal)">9.19</text><text x="44.0" y="138" text-anchor="start" font-size="10" fill="var(--sub)">10-21</text><text x="644.0" y="138" text-anchor="end" font-size="10" fill="var(--sub)">10-24</text></svg>
+  </div>
+
+  <div class="card">
+    <h2>加油明细</h2>
+    <p class="hint">总里程取自仪表「总里程」，区间里程为相邻两次加满的差值</p>
+    <div class="scroll"><table><thead><tr><th>#</th><th>日期</th><th>总里程<small>km</small></th><th>区间<small>km</small></th><th>加油<small>L</small></th><th>单价<small>¥/L</small></th><th>实付</th><th>实测<small>L/100km</small></th><th>表显</th></tr></thead><tbody><tr><td>1</td><td>10-21<br><span class="tm">13:24</span></td><td>4</td><td>—</td><td>3.68</td><td>9.19</td><td>¥33.81</td><td><span style="color:var(--sub)">—</span></td><td>4.2</td></tr><tr><td>2</td><td>10-24<br><span class="tm">13:03</span></td><td>205</td><td>201</td><td>5.39</td><td>9.19</td><td>¥49.53</td><td>2.68</td><td>1.7</td></tr></tbody></table></div><ul class="notes"><li><b>#1</b> <span style="color:var(--sub)">2026-10-21</span>　首次加油 作为基准。中石化 024 号枪</li><li><b>#2</b> <span style="color:var(--sub)">2026-10-24</span>　中石化 039 号枪</li></ul>
+    <p class="note"><br><b>累计口径：</b>自 2026-10-21 首箱加满起，共行驶 201 km，耗油 5.39 L，平均 2.68 L/100km，每公里油费 ¥0.246。<br><b>表显偏差：</b>实测是表显的 1.58 倍，车载表显平均低报 37%。</p>
+  </div>
+
+  <footer>
+    数据源：fuel-log.csv（每次加油追加一行，重跑 build_report.py 即可刷新本页）<br>
+    油耗算法：加满到满法，首次加满作为基准不计入平均；标 * 的记录未加满，该区间油耗不计
+  </footer>
+</div>
+</body>
+</html>
