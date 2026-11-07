@@ -68,6 +68,13 @@ tbody tr:hover{background:var(--accent-soft)}
 .note{font-size:12px;color:var(--sub);margin-top:10px;line-height:1.7}
 .note b{color:var(--fg);font-weight:600}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 14px}
+@media (max-width:640px){.stats{grid-template-columns:1fr 1fr}}
+.stat{background:var(--grid);border-radius:11px;padding:10px 12px;min-width:0}
+.stat .k{font-size:11px;color:var(--sub);margin-bottom:2px}
+.stat .v{font-size:17px;font-weight:650;letter-spacing:-.2px;font-variant-numeric:tabular-nums}
+.stat .v small{font-size:11px;font-weight:500;color:var(--sub);margin-left:2px;letter-spacing:0}
+.wrapcell{white-space:normal;min-width:110px;max-width:180px;color:var(--sub);text-align:left}
 footer{font-size:12px;color:var(--sub);text-align:center;margin-top:26px;line-height:1.8}
 </style>
 </head>
@@ -76,12 +83,12 @@ footer{font-size:12px;color:var(--sub);text-align:center;margin-top:26px;line-he
   <header>
     <div>
       <h1>春风 CFMOTO 150AURA</h1>
-      <p class="sub">油耗里程记录 · 油箱 8L · 共 5 次加油 · 最近加油 2026-11-03 17:36 · 累计优惠 ¥38.58</p>
+      <p class="sub">油耗里程记录 · 油箱 8L · 共 5 次加油 · 保养 1 次 · 最近加油 2026-11-03 17:36 · 累计优惠 ¥38.58</p>
     </div>
     <div class="badge">数据积累中</div>
   </header>
 
-  <div class="kpis"><div class="kpi"><div class="k">总里程</div><div class="v">794<small>km</small></div></div><div class="kpi"><div class="k">累计加油</div><div class="v">25.32<small>L</small></div></div><div class="kpi"><div class="k">累计花费</div><div class="v">¥235.40<small></small></div></div><div class="kpi"><div class="k">平均油耗</div><div class="v">2.74<small>L/100km</small></div></div><div class="kpi"><div class="k">每公里油费</div><div class="v">¥0.255<small></small></div></div><div class="kpi"><div class="k">表显偏差</div><div class="v">低报 38%<small></small></div></div></div>
+  <div class="kpis"><div class="kpi"><div class="k">总里程</div><div class="v">937<small>km</small></div></div><div class="kpi"><div class="k">累计加油</div><div class="v">25.32<small>L</small></div></div><div class="kpi"><div class="k">累计油费</div><div class="v">¥235.40<small></small></div></div><div class="kpi"><div class="k">平均油耗</div><div class="v">2.74<small>L/100km</small></div></div><div class="kpi"><div class="k">每公里油费</div><div class="v">¥0.255<small></small></div></div><div class="kpi"><div class="k">表显偏差</div><div class="v">低报 38%<small></small></div></div></div>
 
   <div class="card">
     <h2>实测油耗趋势</h2>
@@ -102,8 +109,10 @@ footer{font-size:12px;color:var(--sub);text-align:center;margin-top:26px;line-he
     <p class="note"><br><b>累计口径：</b>自 2026-10-21 首箱加满起，共行驶 790 km，耗油 21.64 L，平均 2.74 L/100km，每公里油费 ¥0.255。<br><b>表显偏差：</b>实测是表显的 1.62 倍，车载表显平均低报 38%。</p>
   </div>
 
+  <div class="card"><h2>保养记录</h2><p class="hint">里程取工单登记的总里程；「其他」为工单外单付的项目（如齿轮油）</p><div class="stats"><div class="stat"><div class="k">保养次数</div><div class="v">1<small>次</small></div></div><div class="stat"><div class="k">累计保养</div><div class="v">¥131.00</div></div><div class="stat"><div class="k">综合每公里成本</div><div class="v">¥0.393<small>油+保养</small></div></div></div><div class="scroll"><table><thead><tr><th>#</th><th>日期</th><th>里程<small>km</small></th><th style='text-align:left'>项目</th><th>工时</th><th>材料</th><th>其他</th><th>合计</th><th style='text-align:left'>门店</th></tr></thead><tbody><tr><td>1</td><td>11-07<br><span class="tm">15:32</span></td><td>937</td><td class="wrapcell" style="color:var(--fg)">首次保养</td><td>¥48.00</td><td>¥58.00</td><td>¥25.00</td><td><b>¥131.00</b></td><td class="wrapcell">CFMOTO春风动力(南京江宁店)</td></tr></tbody></table></div><ul class="notes"><li><b>#1</b> <span style="color:var(--sub)">2026-11-07</span>　工单 WXC2026110700538 · 齿轮油 25 元为工单外单付</li></ul><p class="note"><b>综合成本口径：</b>（累计油费 ¥235.40 + 累计保养 ¥131.00）÷ 933 km（4 → 937 km），粗算每公里 ¥0.393。<br><b>下次保养参考：</b>约 3937 km（按首保后每 3000 km 估算），或 6 个月内，以先到为准。</p></div>
+
   <footer>
-    数据源：fuel-log.csv（每次加油追加一行，重跑 build_report.py 即可刷新本页）<br>
+    数据源：fuel-log.csv（加油）、maintenance-log.csv（保养），追加一行后重跑 build_report.py 即可刷新本页<br>
     油耗算法：加满到满法，首次加满作为基准不计入平均；标 * 的记录未加满，该区间油耗不计
   </footer>
 </div>
